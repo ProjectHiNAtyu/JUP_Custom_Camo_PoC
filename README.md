@@ -21,6 +21,31 @@ This release is intended as a technical PoC for custom camos, so please understa
 
 -----
 
+[ How to use the source code ]<br><br>
+
+I added the `#include` statements somewhat arbitrarily, so please remove any that aren't needed.<br>
+Functions like `NotifyMsg` are specific to my client, so please replace them with `printf` or similar.<br><br>
+
+Only three engine functions are primarily required for this custom camo implementation:<br>
+_adr.DB_FindXAssetHeader	= 0x3BD5900;<br>
+_adr.Image_SetupInternal	= 0x55D0560;<br>
+_adr.Load_GfxImage			= 0x3B0B730;<br><br>
+
+After hooking `Load_GfxImage`, the hashed GfxImage asset name is automatically passed to the function.<br>
+If a user-defined hash table with a matching entry exists in the JSON file, the system loads the image from the specified relative file path and swaps it in.<br>
+Injecting the image clears the "Stream" flag, allowing you to change the camo image again at any time.<br><br>
+
+To overwrite the camo again, execute a method like `TryLoadJupCustomGfxImage( "camo_a_01" );` using the non-hashed camo name.<br>
+This traces back from the Camo structure to access the `textureGroup0` field (the main texture).<br>
+From there, the standard custom camo processing takes over.<br><br>
+
+As noted above, repeatedly overwriting the image may cause memory leaks.<br>
+Ideally, the best approach is to add a custom GfxImage using `DB_AddXAssets` and swap that in instead.<br>
+However, the JUP engine uses hashed asset names, making name resolution cumbersome, so I haven't investigated that method for this implementation.<br>
+Feel free to use and improve the source code as you see fit.<br>
+
+-----
+
 # [ Self-Introduction ]
 
 Thank you for watching.<br>
