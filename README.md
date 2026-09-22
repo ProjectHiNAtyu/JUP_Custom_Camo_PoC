@@ -5,6 +5,17 @@
 This code has been verified to work in CoD: MWIII Season 6 "The Haunting."<br>
 Please prepare the client code yourself and adjust it to suit your own code.<br><br>
 
+Please note that using this online is not recommended.<br>
+Since it utilizes hooking, there is a risk of being banned by Ricochet, even if you only use a camouflage mod.<br>
+To ensure you are only using it for personal enjoyment, please use an offline client and play discreetly.<br><br>
+
+Please note that this is intended for technical verification, research, and Proof of Concept (PoC) purposes.<br>
+Please do not misuse the code.<br><br>
+
+Please watch the video of the actual PoC here.<br><br>
+
+https://youtu.be/s_ftrlFv3uE
+
 -----
 
 [ Technical Limitations ]<br><br>
